@@ -1,0 +1,58 @@
+{% extends 'blogging/base.html' %}
+
+{% block title %}
+    home
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-sm-3">
+            <div class="my-4">
+                {% for msg in messages %}
+                <small {% for msg in messages %} class="alert alert-{{msg.tags}}" {% endfor %}>{{msg}}</small>
+                {% endfor %}
+            </div>
+            <h2>Dashboard <a href="{% url 'addpost' %}" class="btn btn-primary ms-3">Add Post</a></h2>
+            <h4 class="mt-5">Welcome</h4>
+            <h4>{{name}}</h4>
+           
+        </div>
+        <div class="col-sm-9 mt-3">
+          {% if Blog %}
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for BD in Blog %}
+                  <tr>
+                    <th>{{BD.id}}</th>
+                    <td>{{BD.title}}</td>
+                    <td>{{BD.desc}}</td>
+                    <td><a href="{% url 'editpost' BD.id %}" class="btn btn-warning">Edit</a></td>
+                    <td>
+                      {% if perms.blogging.delete_blog %}
+                      <form action="{% url 'deletepost' BD.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete" class="btn btn-danger" name="" id="">
+                      </form>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  <tr>
+                </tbody>
+              </table>
+              {% else %}
+              <h2>No Data Found</h2>
+              {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

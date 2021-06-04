@@ -1,0 +1,30 @@
+{% extends 'blogging/base.html' %}
+
+{% block title %}
+    home
+{% endblock title %}
+{% block content %}
+<div class="container">
+   <div class="row">
+    <div class="col-sm-4 offset-1">
+        <h1 class="margintop">Login Here</h1>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <form action="" method="post" novalidate class="margintop1">
+                {% csrf_token %}
+                {% for fm in form %}
+                <p>{{fm.label_tag}} {{fm}} {{fm.errors|striptags}}</p>
+                {% endfor %}
+                <input type="submit" value="Login" class="btn btn-primary" name="" id="">
+                {% if form.non_field_errors %}
+                {% for error in non_field_errors %}
+                <p class="alert alert-danger my-3">{{error}}</p>
+                {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+   </div>
+</div>
+{% endblock content %}

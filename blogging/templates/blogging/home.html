@@ -1,0 +1,20 @@
+{% extends 'blogging/base.html' %}
+
+{% block title %}
+home
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="row my-5">
+        <h1>Mini Blog Project</h1>
+        <div class="col-sm-8 offset-1">
+            <div class="my-3">
+                {% for BD in Blog %}
+                <h2>{{BD.title}}</h2>
+                <p>{{BD.desc}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

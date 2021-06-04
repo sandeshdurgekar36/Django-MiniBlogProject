@@ -1,0 +1,54 @@
+{% extends 'blogging/base.html' %}
+
+{% block title %}
+    home
+{% endblock title %}
+{% block content %}
+   <div class="container">
+       <div class="row">
+           <div class="col-sm-7">
+            <h2 class="mt-4">About This Project</h2>
+            <div class="row ms-5">
+                <h4 class="mt-4">Hello Viewers,</h4>
+                <p class="ms-3">This Project is made Using Popular Web Framework(Django),</p>
+                <h6>Project-Name:-</h6>
+                <p>Mini-Blog</p>
+                <div>
+                    <p>Basically I created This project to Add Post, Edit Post, and Delete Post.
+                     but the all the Permission such as add,delete,view,change are given only to the Admin Who can handle
+                     Everything. 
+                     <p>AnyBody Who Wants To login (imported from AuthenticationForm provided by Django) only After filling the Form of Signup (imported from usercreationform provided by Django), they will get the permission of only Add and Edit the Post(Except Delete).
+                    <h6>Usage of Authentication System :-</h6>
+                    <p>Another main concept is only Authenticated User can Access all the Authorizations Which is present inside the application(add,delete,view,change)</p>
+                    <p>If anyone trying to access all the features before signup and login he/she directly redirected to login page</p>
+                     </p>
+                    </p>
+                </div>
+            </div>
+           </div>
+           <div class="col-sm-5">
+            <h5 style="margin-top: 100px;">Technologies Used For This Project</h5>
+                <div class="ms-5 mt-3">
+                    <h6>Front-End</h6>
+                    <div class="ms-3">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>BOOTSTRAP</li>
+                        <li>DTL(Dynamic-Template-Language)</li>
+                    </div>
+                    <h6 class="my-3">Back-End</h6>
+                    <div class="ms-3">
+                        <li>Python/Django</li>
+                        <li>Sql-lite with(Third-party application-DB Browser for Sql-lite)</li>
+                        <li>Sql-lite(Provided Django)</li>
+                    </div>
+                    <h6 class="my-3">Extra Technologies used </h6>
+                    <div class="ms-3">
+                        <li>Font-Awesome</li>
+                        <li>Hex-color</li>
+                    </div>
+                </div>
+           </div>
+       </div>
+   </div>
+{% endblock content %}
