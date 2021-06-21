@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponseRedirect
-from .forms import SignUpForm, LoginForm,AddPost
-from .models import Blog
+from .forms import SignUpForm, LoginForm,AddPost,UserContact
+from .models import Blog, ContactForm
 from django.contrib import messages
 from django.contrib.auth.models import User,Group
 from django.contrib.auth import authenticate,login,logout
@@ -24,7 +24,18 @@ def dashboard(request):
 
 # contact
 def contact(request):
-    return render(request, 'blogging/contact.html')
+    if request.method == 'POST':
+        contactform = UserContact(request.POST)
+        if contactform.is_valid():
+            em = contactform.cleaned_data['email']
+            ph = contactform.cleaned_data['Phone']
+            contact_detail = ContactForm(email=em, Phone=ph)
+            contact_detail.save()
+            contactform = UserContact()
+            messages.success(request, 'Message Sent Successfully!!!')
+    else:
+        contactform = UserContact()
+    return render(request, 'blogging/contact.html', {'form': contactform})
 
 # signup
 def User_signup(request):
@@ -103,5 +114,4 @@ def deletepost(request, id):
         pi = Blog.objects.get(pk=id)
         pi.delete()
         return HttpResponseRedirect('/dashboard/')
-    
-    
+  

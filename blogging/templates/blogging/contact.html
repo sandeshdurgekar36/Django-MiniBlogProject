@@ -1,30 +1,35 @@
 {% extends 'blogging/base.html' %}
 
 {% block title %}
-    home
+contact
 {% endblock title %}
 {% block content %}
 <div class="container">
-    <div class="row my-5">
-        <h1>Contact Us</h1>
-        <div class="col-sm-6 offset-3">
-            <form class="mt-4">
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div class="form-floating">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                    <label for="floatingTextarea2">Comments</label>
-                  </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Send</button>
-              </form>
-        </div>
+  <div class="row">
+    <div class="col-sm-4 offset-1">
+      <h1 class="margintop">contact us</h1>
     </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <div class="mt-4">
+          {% for msg in messages %}
+          <small {% for msg in messages %} class="alert alert-{{msg.tags}}" {% endfor %}>{{msg}}</small>
+          {% endfor %}
+        </div>
+        <form action="" method="post" novalidate class="margintop1">
+          {% csrf_token %}
+          {% for fm in form %}
+          <p>{{fm.label_tag}} {{fm}} {{fm.errors|striptags}}</p>
+          {% endfor %}
+          <input type="submit" value="contact Us" class="btn btn-warning" name="" id="">
+          {% if form.non_field_errors %}
+          {% for error in non_field_errors %}
+          <p class="alert alert-danger my-3">{{error}}</p>
+          {% endfor %}
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock content %}
